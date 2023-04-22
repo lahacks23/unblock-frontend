@@ -5,7 +5,9 @@ import HomeStack from "./HomeStack";
 import AuthStack from "./AuthStack";
 import { AuthContext } from "./AuthProvider";
 import { ActivityIndicator } from "react-native";
-import firebase from "firebase";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
 export default function NavigationStack() {
   const { user, setUser } = useContext(AuthContext);

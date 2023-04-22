@@ -1,4 +1,6 @@
-import firebase from "firebase";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 import apiKeys from "../config/apiKeys";
 import * as Google from "expo-google-app-auth";
 let app;
