@@ -10,7 +10,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase();
 
-export default function Login() {
+export default function Signup() {
   const [value, setValue] = useState({
     email: '',
     password: '',
@@ -27,6 +27,7 @@ export default function Login() {
   
     try {
       await createUserWithEmailAndPassword(auth, value.email, value.password);
+      await updateDB();
       // navigation.navigate('Sign In');
     } catch (error) {
       setValue({
@@ -37,19 +38,13 @@ export default function Login() {
   }
 
   const updateDB = async () => {
-    set(ref(db, 'users/123'), {
-      email: false,
-      profile_picture : 0,
+    set(ref(db, `users/${value.email}`), {
+      email: value.email,
+      password: value.password,
     });
   }
 
   return <View>
-    <Text>Signup screen!</Text>
-
-    <TouchableOpacity onPress={() => updateDB()}>
-        <Text>UpdateDB</Text>
-      </TouchableOpacity>
-
     {!!value.error && <View><Text>{value.error}</Text></View>}
 
     <TextInput

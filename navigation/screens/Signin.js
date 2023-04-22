@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { TextInput, StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
 import apiKeys from "../../config/apiKeys";
 const firebaseConfig = apiKeys.firebaseConfig
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getDatabase();
 
 export default function Signin() {
   const [value, setValue] = useState({
@@ -36,20 +34,8 @@ export default function Signin() {
     } 
   }
 
-  const updateDB = async () => {
-    set(ref(db, 'users/123'), {
-      email: false,
-      profile_picture : 0,
-    });
-  }
 
   return <View>
-    <Text>Signin screen!</Text>
-
-    <TouchableOpacity onPress={() => updateDB()}>
-        <Text>UpdateDB</Text>
-      </TouchableOpacity>
-
     {!!value.error && <View><Text>{value.error}</Text></View>}
 
     <TextInput
@@ -67,7 +53,7 @@ export default function Signin() {
       secureTextEntry={true}
     />
 
-    <Button title="Sign up" onPress={signUp} /> 
+    <Button title="Sign in" onPress={signUp} /> 
   </View>
 }
 

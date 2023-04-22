@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styles from "../../styles.js";
 import { Text, View, TouchableOpacity, Image} from "react-native";
 import { AuthContext } from "../AuthProvider.js";
-import Login from "./Login.js";
+import Signup from "./Signup.js";
 import Signin from "./Signin.js";
 
 export default function LoginScreen() {
@@ -20,7 +20,7 @@ export default function LoginScreen() {
       <View style={styles.qrcodebottom2}></View> */}
     
       <Signin></Signin>
-      <Login></Login>
+      <Signup></Signup>
     </View>
   );
 }
