@@ -3,6 +3,7 @@ import styles from "../../styles.js";
 import { Text, View, TouchableOpacity, Image} from "react-native";
 import { AuthContext } from "../AuthProvider.js";
 import Login from "./Login.js";
+import Signin from "./Signin.js";
 
 export default function LoginScreen() {
   const { login } = useContext(AuthContext);
@@ -18,6 +19,7 @@ export default function LoginScreen() {
       <View style={styles.qrcodebottom}></View>
       <View style={styles.qrcodebottom2}></View> */}
     
+      <Signin></Signin>
       <Login></Login>
     </View>
   );
