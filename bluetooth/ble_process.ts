@@ -165,11 +165,11 @@ export default function ble(): BluetoothLowEnergyApi {
     console.log("testing12233123123")
     console.log("res:" + base64.decode( res && res.value ? res.value : ""));
     const resp1 = await bleManager.readCharacteristicForDevice(allDevices[0].id, "BAAD", "F00D", )
-    console.log(base64.decode(resp1.value ? resp1.value : ""))
+    // console.log(base64.decode(resp1.value ? resp1.value : ""))
 
 
     const resp_split = (base64.decode(resp1.value ? resp1.value : "")).trim().split(/(\s+)/);
-    console.log(resp_split)
+    // console.log(resp_split)
     const resp_uid = resp_split[2]
     const resp_requestid = resp_split[4]
     const resp_lid = resp_split[6]
@@ -185,7 +185,7 @@ export default function ble(): BluetoothLowEnergyApi {
     "type": "UNLOCK",
     "uid": resp_uid,
     }
-    console.log(response_body)
+    // console.log(response_body)
     const response = await fetch(BACKEND_URL + "sign", {
       method: "POST",
       headers: {
@@ -197,17 +197,26 @@ export default function ble(): BluetoothLowEnergyApi {
     
     const body = await response.json();
     var string_body = JSON.stringify(body)
-    console.log(JSON.stringify(body))
-    console.log("testttttt")
-    while (string_body.length > 50){
-      await bleManager.writeCharacteristicWithResponseForDevice(device_id, "BAAD", "F00D", base64.encode("S "+ string_body.substring(0,50)),)
-      string_body = string_body.substring(50)
-    }
 
-    
-    const res2 = await bleManager.writeCharacteristicWithResponseForDevice(device_id, "BAAD", "F00D", base64.encode("F "+ string_body.substring(0,string_body.length)),)
-    
-    return res2;
+
+    const response2 = await fetch(BACKEND_URL + "verify", {
+      method: "POST",
+      headers: {
+          'Content-Type': "application/json",
+          "Authorization": `Bearer salkfdjlksdf`,
+      },
+      body: string_body
+    });
+    // console.log(JSON.stringify(body))
+    // while (string_body.length > 50){
+    //   await bleManager.writeCharacteristicWithResponseForDevice(device_id, "BAAD", "F00D", base64.encode("S "+ string_body.substring(0,50)),)
+    //   string_body = string_body.substring(50)
+    // }
+
+    console.log(response2);
+    // const res2 = await bleManager.writeCharacteristicWithResponseForDevice(device_id, "BAAD", "F00D", base64.encode("F "+ string_body.substring(0,string_body.length)),)
+    console.log("Pair Successfully")
+    return res;
   }
 
   

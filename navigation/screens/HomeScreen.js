@@ -24,7 +24,6 @@ export default function HomeScreen() {
   useEffect(() => {
     async function myfn(){
       if(press && connectedDevice){
-        console.log("testt2")
         //unlock uid requestid
         //response: unlock_ack uid requestid lid nonce
         console.log(allDevices[0]?.id)
@@ -55,7 +54,6 @@ export default function HomeScreen() {
     handShake
   } = ble()
   const pressed = () => {
-    console.log("testtttt")
     setPress(true);
   }
   const scanForDevices = async () => {
