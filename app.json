@@ -11,14 +11,7 @@
         "@config-plugins/react-native-ble-plx",
         {
           "isBackgroundEnabled": true,
-<<<<<<< HEAD
-          "modes": [
-            "peripheral",
-            "central"
-          ],
-=======
           "modes": ["peripheral", "central"],
->>>>>>> ble
           "bluetoothAlwaysPermission": "Allow $(PRODUCT_NAME) to connect to bluetooth devices"
         }
       ]
@@ -34,31 +27,19 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-<<<<<<< HEAD
-      "bundleIdentifier": "com.tong89.unblock"
-=======
       "bundleIdentifier": "com.dfriyia2.expoblesample"
->>>>>>> ble
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-<<<<<<< HEAD
-        "backgroundColor": "#ffffff"
-=======
         "backgroundColor": "#FFFFFF"
->>>>>>> ble
       },
       "permissions": [
         "android.permission.BLUETOOTH",
         "android.permission.BLUETOOTH_ADMIN",
         "android.permission.BLUETOOTH_CONNECT"
       ],
-<<<<<<< HEAD
-      "package": "com.tong89.unblock"
-=======
       "package": "com.dfriyia2.expoblesample"
->>>>>>> ble
     },
     "web": {
       "favicon": "./assets/favicon.png"
