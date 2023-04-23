@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "expo-test",
-    "slug": "unblock",
+    "name": "expo-ble-sample",
+    "slug": "expo-ble-sample",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,10 +11,14 @@
         "@config-plugins/react-native-ble-plx",
         {
           "isBackgroundEnabled": true,
+<<<<<<< HEAD
           "modes": [
             "peripheral",
             "central"
           ],
+=======
+          "modes": ["peripheral", "central"],
+>>>>>>> ble
           "bluetoothAlwaysPermission": "Allow $(PRODUCT_NAME) to connect to bluetooth devices"
         }
       ]
@@ -24,33 +28,40 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
+<<<<<<< HEAD
       "bundleIdentifier": "com.tong89.unblock"
+=======
+      "bundleIdentifier": "com.dfriyia2.expoblesample"
+>>>>>>> ble
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
+<<<<<<< HEAD
         "backgroundColor": "#ffffff"
+=======
+        "backgroundColor": "#FFFFFF"
+>>>>>>> ble
       },
       "permissions": [
         "android.permission.BLUETOOTH",
         "android.permission.BLUETOOTH_ADMIN",
         "android.permission.BLUETOOTH_CONNECT"
       ],
+<<<<<<< HEAD
       "package": "com.tong89.unblock"
+=======
+      "package": "com.dfriyia2.expoblesample"
+>>>>>>> ble
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "5cb92d06-a1f2-4234-b30b-6e79d3ae3660"
-      }
-    },
-    "owner": "tong89"
+    }
   }
 }

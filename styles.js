@@ -66,7 +66,7 @@ export default StyleSheet.create({
     fontSize: 30,
   },
   tinyLogoContainer:{
-    backgroundColor: "#558B6E",
+    backgroundColor: "#151C47",
     
   },
   tinyLogo:{
@@ -74,20 +74,20 @@ export default StyleSheet.create({
     height: 200, 
   },
   qrcodebottom:{
-    backgroundColor: "#558B6E",
+    backgroundColor: "#151C47",
     width: 1200,
     marginTop: 100,
     height: 50,
   },
   qrcodebottom2:{
-    backgroundColor: "#558B6E",
+    backgroundColor: "#151C47",
     width: 1200,
     marginTop: 20,
     height: 20,
   },
   topBar:{
     marginTop: -200,
-    backgroundColor: "#558B6E",
+    backgroundColor: "#151C47",
     width: 1200,
     height: 370,
     alignItems: "center",
@@ -144,6 +144,43 @@ export default StyleSheet.create({
     alignItems: "center",
     width: 343,
     // padding: 10,
-  }
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: "#151C47",
+  },
+  modalFlatlistContiner: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  modalCellOutline: {
+    borderWidth: 1,
+    borderColor: "black",
+    alignItems: "center",
+    marginHorizontal: 20,
+    paddingVertical: 15,
+    borderRadius: 8,
+  },
+  modalTitle: {
+    flex: 1,
+    backgroundColor: "#151C47",
+  },
+  modalTitleText: {
+    marginTop: 40,
+    fontSize: 30,
+    fontWeight: "bold",
+    marginHorizontal: 20,
+    textAlign: "center",
+    color:"#FFF"
+  },
+  modalButton: {
+    backgroundColor: "#FFF",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 50,
+    marginHorizontal: 20,
+    marginBottom: 5,
+    borderRadius: 8,
+  },
   
 });

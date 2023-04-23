@@ -2,7 +2,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import apiKeys from "../config/apiKeys";
-import * as Google from "expo-google-app-auth";
+import * as Google from "expo-auth-session";
 let app;
 if (!firebase.apps.length) app = firebase.initializeApp(apiKeys.firebaseConfig);
 else app = firebase.app();

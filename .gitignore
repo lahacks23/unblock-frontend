@@ -12,6 +12,7 @@ web-build/
 ios/
 android/
 
+android
 **/*apiKeys.js
 
 # macOS
