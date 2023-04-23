@@ -17,6 +17,7 @@ export default function NavigationStack() {
   //handle user state changes
   useEffect(() => {
     const subscriber = firebase.auth().onAuthStateChanged(function (user) {
+      console.log(user);
       setUser(user);
       if (initializing) setInitializing(false);
       setLoading(false);
