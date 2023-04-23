@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderWidth: 1,
     height: 51,
+    marginVertical: 5,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

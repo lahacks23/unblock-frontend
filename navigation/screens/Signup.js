@@ -49,6 +49,7 @@ export default function Signup() {
   }
 
   return <View>
+    <Text>Sign Up</Text>
     {!!value.error && <View><Text>{value.error}</Text></View>}
 
     <TextInput

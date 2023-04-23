@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../../styles.js";
-import { Text, View, TouchableOpacity, Image} from "react-native";
+import { Text, View, TouchableOpacity, Image, Pressable} from "react-native";
 import { AuthContext } from "../AuthProvider.js";
 import Signup from "./Signup.js";
 import Signin from "./Signin.js";
 
 export default function LoginScreen() {
-  const { login } = useContext(AuthContext);
+  const [showSignup, setShowSignup] = useState(false);
   return (
     <View style={styles.container}>
       <View style={styles.login}>
@@ -19,8 +19,15 @@ export default function LoginScreen() {
       <View style={styles.qrcodebottom}></View>
       <View style={styles.qrcodebottom2}></View> */}
     
-      <Signin></Signin>
-      <Signup></Signup>
+      {showSignup ? <Signup/> : 
+        <View>      
+          <Signin/>
+          <Pressable style={styles.container} onPress={() => setShowSignup(true)}>
+            <Text>Create an Account</Text>
+          </Pressable>
+      </View>}
+
+
     </View>
   );
 }

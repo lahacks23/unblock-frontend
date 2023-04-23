@@ -106,7 +106,7 @@ export default StyleSheet.create({
   },
   input: {
     height: 40,
-    width: 200,
+    width: 343,
     margin: 12,
     borderWidth: 1,
     padding: 10,
