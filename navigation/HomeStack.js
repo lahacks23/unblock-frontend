@@ -13,7 +13,7 @@ export default function HomeStack() {
   return (
     <Tab.Navigator initialRouteName="Home">
       <Tab.Screen
-        name="Extra"
+        name="Requests"
         component={ExtraScreen}
         options={{
           tabBarIcon: ({ color }) => (

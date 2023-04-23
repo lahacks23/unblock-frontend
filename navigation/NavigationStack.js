@@ -11,7 +11,7 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/database'
 
 export default function NavigationStack() {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, requests, setRequests } = useContext(AuthContext);
   const [initializing, setInitializing] = useState(true);
   const [loading, setLoading] = useState(true);
 
@@ -28,6 +28,16 @@ export default function NavigationStack() {
 
       ref.child(user.uid).on("child_added", (snapshot) => {
           console.log(snapshot.val());
+          ref.child(user.uid).get().then((snapshot) => {
+            if (snapshot.exists()) {
+              const newRequests = Object.values(snapshot.val())
+              setRequests(newRequests)
+            } else {
+              console.log("No data available")
+            }
+          }).catch((error) => {
+            console.error(error);
+          })
       });
       
       if (initializing) setInitializing(false);
