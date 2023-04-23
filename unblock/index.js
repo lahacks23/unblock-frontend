@@ -30,3 +30,18 @@ export async function processLockResponse (userToken, lockRequest, lockResponse)
     const body = await response.json();
     return body;
 }
+
+export async function processGuestAccept (userToken, item, accept) {
+    console.log(item);
+    const response = await fetch(BACKEND_URL + "guest", {
+        method: "POST",
+        headers: {
+            'Content-Type': "application/json",
+            "Authorization": `Bearer ${userToken}`
+        },
+        body: JSON.stringify({accept: accept, ...item})
+    });
+    console.log(response)
+    // const body = await response.json();
+    // return body;
+}

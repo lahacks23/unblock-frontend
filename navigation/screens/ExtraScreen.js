@@ -7,6 +7,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/compat/database'
 import { AuthContext } from "../AuthProvider.js";
+import { processGuestAccept } from "../../unblock/index.js";
 
 export default function ExtraScreen() {
   const { user, setUser, requests, setRequests } = useContext(AuthContext);
@@ -16,12 +17,14 @@ export default function ExtraScreen() {
     const ref = firebase.database().ref("requests");
     setUser(user);
 
-    const newRef = await ref.child(user.uid).push()
+    const newRef = await ref.child(user.uid + "/123")
     console.log(newRef.key);
 
     newRef.set({
-      uid: "jgge",
-      key: newRef.key
+      uid: "jPdZWtRaOIYl0NVxdO3atyMlauh1",
+      lid: "lock1",
+      rid: 123,
+      type: "UNLOCK"
     })
 
     // ref.child(user.uid).child("blahblah").set({
@@ -29,23 +32,15 @@ export default function ExtraScreen() {
     //   key: ""
     // });
   }
-  const deny = async (item) => {
-    const ref = firebase.database().ref("requests");
-    setUser(user);
-    const delRef = await ref.child(user.uid).child(item.key)
 
-    delRef.remove();
-    ref.child(user.uid).get().then((snapshot) => {
-            if (snapshot.exists()) {
-              const newRequests = Object.values(snapshot.val())
-              setRequests(newRequests)
-            } else {
-              console.log("No data available")
-              setRequests([])
-            }
-          }).catch((error) => {
-            console.error(error);
-          })
+  const accept = async (item) => {
+    const userToken = await user.getIdToken();
+    await processGuestAccept(userToken, item, true);
+  }
+
+  const deny = async (item) => {
+    const userToken = await user.getIdToken();
+    await processGuestAccept(userToken, item, false);
   }
   const listItem = (item) => 
     <View style={styles.hcontainer}>
@@ -58,7 +53,7 @@ export default function ExtraScreen() {
         {/* <Text style={styles2.item}>{item.key}</Text> */}
         <Text>{item.what}</Text>
         <View style={styles.hcontainer}>
-          <Button title="Accept" />
+          <Button title="Accept" onPress={() => accept(item)}/>
           <Button title="Deny" onPress={() => deny(item)}/>
         </View>
         <View

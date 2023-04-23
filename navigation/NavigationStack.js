@@ -17,23 +17,24 @@ export default function NavigationStack() {
 
   //handle user state changes
   useEffect(() => {
-    const subscriber = firebase.auth().onAuthStateChanged(function (user) {
+    const subscriber = firebase.auth().onAuthStateChanged(function (newUser) {
       const ref = firebase.database().ref("requests");
       if (user) ref.child(user.uid).off("child_added");
       
-      console.log(user);
+      console.log(newUser);
       
-      setUser(user);
+      setUser(newUser);
       // ref.child(user.uid).push({what: "what"});
 
-      ref.child(user.uid).on("child_added", (snapshot) => {
+      ref.child(newUser.uid).on("value", (snapshot) => {
           console.log(snapshot.val());
-          ref.child(user.uid).get().then((snapshot) => {
+          ref.child(newUser.uid).get().then((snapshot) => {
             if (snapshot.exists()) {
               const newRequests = Object.values(snapshot.val())
               setRequests(newRequests)
             } else {
               console.log("No data available")
+              setRequests({});
             }
           }).catch((error) => {
             console.error(error);
