@@ -131,6 +131,8 @@ export default function ble(): BluetoothLowEnergyApi {
     const res : Characteristic = await bleManager.writeCharacteristicWithResponseForDevice(device_id, "DEAD", "BEEF", base64.encode("UNLOCK hello_world"),)
     console.log("testing12233123123")
     console.log(base64.decode( res && res.value ? res.value : ""));
+    const response = await bleManager.readCharacteristicForDevice(allDevices[0].id, "DEAD", "BEEF", )
+    console.log(base64.decode(response.value ? response.value : ""))
     return res;
   }
 

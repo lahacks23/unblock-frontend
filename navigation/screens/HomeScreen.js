@@ -4,6 +4,7 @@ import styles from "../../styles.js";
 import { Text, View, Button, Image } from "react-native";
 import ble from "../../bluetooth/ble_process";
 import DeviceModal from "../DeviceConnectionModal";
+import base64 from 'react-native-base64';
 
 
 export default function HomeScreen() {
@@ -22,8 +23,12 @@ export default function HomeScreen() {
     async function myfn(){
       if(press){
         
-        handShake(allDevices[0]?.id)
+        resp = await handShake(allDevices[0]?.id)
+        console.log(base64.decode( resp && resp.value ? resp.value : ""));
         setPress(false)
+        console.log("test")
+      
+        
       }
       
     }
