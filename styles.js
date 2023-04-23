@@ -8,6 +8,15 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 10,
+    borderRadius: 10,
+  },
+  invertContainer: {
+    flex: 1,
+    // marginTop: 10,
+    backgroundColor: "#151C47",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
   },
   containeruser: {
     flex: 1,

@@ -8,7 +8,7 @@ import Signin from "./Signin.js";
 export default function LoginScreen() {
   const [showSignup, setShowSignup] = useState(false);
   return (
-    <View style={styles.container}>
+    <View style={styles.invertContainer}>
       <View style={styles.login}>
       <View style={styles.tinyLogoContainer}>
       <Image
@@ -18,15 +18,15 @@ export default function LoginScreen() {
       {/* <View style={styles.login2}><Text style={styles.login3}>Scan your Credit Card to Sign In!</Text></View>
       <View style={styles.qrcodebottom}></View>
       <View style={styles.qrcodebottom2}></View> */}
-    
-      {showSignup ? <Signup/> : 
-        <View>      
-          <Signin/>
-          <Pressable style={styles.container} onPress={() => setShowSignup(true)}>
-            <Text>Create an Account</Text>
-          </Pressable>
-      </View>}
-
+      <View style={styles.container}>
+        {showSignup ? <Signup/> : 
+          <View>      
+            <Signin/>
+            <Pressable style={styles.container} onPress={() => setShowSignup(true)}>
+              <Text>Create an Account</Text>
+            </Pressable>
+        </View>}
+      </View>
 
     </View>
   );
