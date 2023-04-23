@@ -10,22 +10,22 @@ import {useState, useContext } from "react";
 
 type DeviceModalListItemProps = {
   item: ListRenderItemInfo<Device>;
-  connectToPeripheral: (device: Device) => void;
+  connectToPeripheral: (device: Device) => Promise<void>;
   closeModal: () => void;
 };
 
 type DeviceModalProps = {
   devices: Device[];
   visible: boolean;
-  connectToPeripheral: (device: Device) => void;
+  connectToPeripheral: (device: Device) => Promise<void>;
   closeModal: () => void;
 };
 
 const DeviceModalListItem: FC<DeviceModalListItemProps> = (props) => {
   const { item, connectToPeripheral, closeModal } = props;
   const connectAndCloseModal = useCallback(() => {
-    connectToPeripheral(item.item);
-    closeModal();
+    connectToPeripheral(item.item).then(() => closeModal());
+    //closeModal();
   }, [closeModal, connectToPeripheral, item.item]);
 
   return (

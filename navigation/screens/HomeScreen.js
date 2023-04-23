@@ -7,6 +7,8 @@ import DeviceModal from "../DeviceConnectionModal";
 import base64 from 'react-native-base64';
 
 
+
+const BACKEND_URL = "http://ec2-54-177-39-50.us-west-1.compute.amazonaws.com:3000/";
 export default function HomeScreen() {
   const { user, logout } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
@@ -21,21 +23,28 @@ export default function HomeScreen() {
 
   useEffect(() => {
     async function myfn(){
-      if(press){
-        
+      if(press && connectedDevice){
+        console.log("testt2")
+        //unlock uid requestid
+        //response: unlock_ack uid requestid lid nonce
+        console.log(allDevices[0]?.id)
         resp = await handShake(allDevices[0]?.id)
-        console.log(base64.decode( resp && resp.value ? resp.value : ""));
         setPress(false)
-        console.log("test")
-      
         
+
+        
+      }
+      else {
+        console.log("didn't enter?")
+        console.log(connectedDevice)
+        console.log(press)
       }
       
     }
     
     myfn();
     
-  }, [press])
+  }, [press, connectedDevice])
   const {
     requestPermissions,
     scanForPeripherals,
@@ -46,6 +55,7 @@ export default function HomeScreen() {
     handShake
   } = ble()
   const pressed = () => {
+    console.log("testtttt")
     setPress(true);
   }
   const scanForDevices = async () => {
@@ -79,7 +89,7 @@ export default function HomeScreen() {
       >
         
       </Button>
-      <Button onPress = {pressed} title="test"></Button>
+      <Button onPress = {() => handShake(allDevices[0]?.id)} title="test"></Button>
       <Button onPress={logout_exit} title="Log Out" />
       
       <DeviceModal
