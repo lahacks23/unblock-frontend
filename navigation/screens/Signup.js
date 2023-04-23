@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { TextInput, StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import { TextInput, Text, View, TouchableOpacity } from 'react-native';
+import Button from "./Button.js"
+import styles from "../../styles.js";
 
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set } from "firebase/database";
@@ -26,7 +28,9 @@ export default function Signup() {
     }
   
     try {
-      await createUserWithEmailAndPassword(auth, value.email, value.password);
+      const userCredential = await createUserWithEmailAndPassword(auth, value.email, value.password);
+      const accessToken = userCredential.user.accessToken;
+      console.log(userCredential);
       await updateDB();
       // navigation.navigate('Sign In');
     } catch (error) {
@@ -45,6 +49,10 @@ export default function Signup() {
   }
 
   return <View>
+    <View style={styles.container} >
+      <Text style={styles.titleText}>Sign Up</Text>
+    </View>
+
     {!!value.error && <View><Text>{value.error}</Text></View>}
 
     <TextInput
@@ -62,22 +70,6 @@ export default function Signup() {
       secureTextEntry={true}
     />
 
-    <Button title="Sign up" onPress={signUp} /> 
+    <Button title="Sign Up" onPress={signUp} /> 
   </View>
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    height: 40,
-    width: 200,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-});

@@ -1,16 +1,19 @@
-import {useState, useContext} from "react";
-import { TextInput, StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import {useContext, useState } from "react";
+import { TextInput, Text, View } from 'react-native';
+import Button from "./Button.js"
+import styles from "../../styles.js";
 
 import { initializeApp } from "firebase/app";
 import apiKeys from "../../config/apiKeys";
 const firebaseConfig = apiKeys.firebaseConfig
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { AuthContext } from "../AuthProvider.js";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 import { AuthContext } from "../AuthProvider";
 
 export default function Signin() {
-  // const { token, setToken } = useContext(AuthContext);
+  const {user, setUser} = useContext(AuthContext);
   const [value, setValue] = useState({
     email: '',
     password: '',
@@ -26,8 +29,10 @@ export default function Signin() {
     }
   
     try {
-      await signInWithEmailAndPassword(auth, value.email, value.password); 
-      // setToken(credential.user.accessToken);
+      const userCredential = await signInWithEmailAndPassword(auth, value.email, value.password);
+      // const accessToken = userCredential.user.accessToken;
+      // console.log(value.email)
+      // setUser({email: value.email, token: accessToken});
       // navigation.navigate('Sign In');
     } catch (error) {
       setValue({
@@ -39,6 +44,9 @@ export default function Signin() {
 
 
   return <View>
+    <View style={styles.container} >
+      <Text style={styles.titleText}>Log In</Text>
+    </View>
     {!!value.error && <View><Text>{value.error}</Text></View>}
 
     <TextInput
@@ -56,22 +64,6 @@ export default function Signin() {
       secureTextEntry={true}
     />
 
-    <Button title="Sign in" onPress={signUp} /> 
+    <Button title="Log In" onPress={signUp} /> 
   </View>
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    height: 40,
-    width: 200,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-});

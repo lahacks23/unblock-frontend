@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 10,
+    // marginTop: 10,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
@@ -103,7 +103,38 @@ export default StyleSheet.create({
   login3:{
     fontSize: 40,
     marginTop: 10,
+  },
+  input: {
+    height: 40,
+    width: 343,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 8,
+    borderColor: "#E8E8E8",
+    backgroundColor: "#F6F6F6",
+    fontWeight: 500,
+  },
+  titleText: {
+    fontWeight: "bold",
+    color: "#151C47",
+    fontSize: 30,
+  },
+  colorText: {
+    color: "#151C47",
+    fontWeight: "bold",
+  },
+  lockImg: {
+    height: 50,
+    width: 50
+  },
+  hcontainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 343,
+    // padding: 10,
   }
-  
   
 });
