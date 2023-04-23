@@ -3,6 +3,7 @@ import { AuthContext } from "../AuthProvider";
 import styles from "../../styles.js";
 import { Text, View, Image, FlatList, StyleSheet, Pressable } from "react-native";
 import Button from './Button.js'
+import Lock from "./Lock";
 
 const styles2 = StyleSheet.create({
   item: {
@@ -24,8 +25,26 @@ const styles2 = StyleSheet.create({
 
 export default function HomeScreen() {
   const { user } = useContext(AuthContext);
+  const [lockNum, setLockNum] = useState("");
   const [userName, setUserName] = useState("");
   const [profilePic, setProfilePic] = useState(null);
+  const data = [
+    {key: 'Device Title'},
+    {key: 'Dan'},
+    {key: 'Dominic'},
+    {key: 'Jackson'},
+    {key: 'James'},
+    {key: 'Joel'},
+    {key: 'John'},
+    {key: 'Jillian'},
+    {key: 'Jimmy'},
+    {key: 'Julie'},
+  ]
+  
+  const updateSelection = () => {
+    console.log("lock selected!")
+    setLockNum("Bob")
+  }
 
   useEffect(() => {
     setUserName(user.displayName);
@@ -42,7 +61,7 @@ export default function HomeScreen() {
         <Text style={styles.colorText}>Lock 1</Text>
         {/* <Text style={styles2.item}>{item.key}</Text> */}
         <Text>{item.key}</Text>
-        <Button title="Request Access" />
+        <Button title="Request Access" onPress={updateSelection} />
         <View
         style={{
           borderBottomColor: 'grey',
@@ -57,27 +76,25 @@ export default function HomeScreen() {
     </View>
   return (
     <View style={styles.container}>
-      <Text style={styles.titleText}>Welcome {userName}</Text>
-      <Text>Nearby Devices</Text>
-      <FlatList
-        style={styles2.list}
-        data={[
-          {key: 'Device Title'},
-          {key: 'Dan'},
-          {key: 'Dominic'},
-          {key: 'Jackson'},
-          {key: 'James'},
-          {key: 'Joel'},
-          {key: 'John'},
-          {key: 'Jillian'},
-          {key: 'Jimmy'},
-          {key: 'Julie'},
-        ]}
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => listItem(item)}
-      />
-      <Image style={styles.profileImage} source={{ uri: profilePic }} />
+      {lockNum ? 
+        <View style={styles.container}>
+          <Button title="Back" onPress={() => setLockNum("")}
+          />
+          <Lock />
+        </View> : 
+        <View style={styles.container}>
+          <Text style={styles.titleText}>Welcome {userName}</Text>
+          <Text style={styles.colorText}>Nearby Devices</Text>
+          <FlatList
+            style={styles2.list}
+            data={data}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({item}) => listItem(item)}
+          />
+        </View>
+      }
+      {/* <Image style={styles.profileImage} source={{ uri: profilePic }} /> */}
     </View>
   );
 }

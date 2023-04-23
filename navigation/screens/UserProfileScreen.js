@@ -11,6 +11,8 @@ export default function UserProfileScreen() {
     <View style={styles.container}>
       <Text style={styles.titleText}>User Profile Screen</Text>
 
+      <Text>{user && user.email}</Text>
+
       <Button onPress={logout} title="Log Out" />
     </View>
   );

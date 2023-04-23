@@ -1,4 +1,4 @@
-import {useState } from "react";
+import {useContext, useState } from "react";
 import { TextInput, Text, View } from 'react-native';
 import Button from "./Button.js"
 import styles from "../../styles.js";
@@ -7,10 +7,12 @@ import { initializeApp } from "firebase/app";
 import apiKeys from "../../config/apiKeys";
 const firebaseConfig = apiKeys.firebaseConfig
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { AuthContext } from "../AuthProvider.js";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 export default function Signin() {
+  const {user, setUser} = useContext(AuthContext);
   const [value, setValue] = useState({
     email: '',
     password: '',
@@ -27,7 +29,9 @@ export default function Signin() {
   
     try {
       const userCredential = await signInWithEmailAndPassword(auth, value.email, value.password);
-      const accessToken = userCredential.user.accessToken;
+      // const accessToken = userCredential.user.accessToken;
+      console.log(value.email)
+      setUser({email: value.email, token: accessToken});
       // navigation.navigate('Sign In');
     } catch (error) {
       setValue({
