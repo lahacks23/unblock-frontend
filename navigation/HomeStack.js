@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import HomeScreen from "./screens/HomeScreen";
 import ExtraScreen from "./screens/ExtraScreen";
@@ -6,7 +6,9 @@ import UserProfileScreen from "./screens/UserProfileScreen";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
+
 export default function HomeStack() {
+
   const Tab = createMaterialBottomTabNavigator();
   return (
     <Tab.Navigator initialRouteName="Home">

@@ -18,8 +18,6 @@ export async function processLockResponse (userToken, lockRequest, lockResponse)
         return; // Drop bad lock response
     }
 
-    console.log("TEST");
-
     const response = await fetch(BACKEND_URL + "sign", {
         method: "POST",
         headers: {
@@ -30,6 +28,5 @@ export async function processLockResponse (userToken, lockRequest, lockResponse)
     });
 
     const body = await response.json();
-    console.log(body);
     return body;
 }

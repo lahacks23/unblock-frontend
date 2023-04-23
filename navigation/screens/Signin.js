@@ -10,7 +10,6 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { AuthContext } from "../AuthProvider.js";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-import { AuthContext } from "../AuthProvider";
 
 export default function Signin() {
   const {user, setUser} = useContext(AuthContext);

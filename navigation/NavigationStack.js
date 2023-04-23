@@ -8,6 +8,7 @@ import { ActivityIndicator } from "react-native";
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import 'firebase/compat/database'
 
 export default function NavigationStack() {
   const { user, setUser } = useContext(AuthContext);
@@ -17,8 +18,18 @@ export default function NavigationStack() {
   //handle user state changes
   useEffect(() => {
     const subscriber = firebase.auth().onAuthStateChanged(function (user) {
+      const ref = firebase.database().ref("requests");
+      if (user) ref.child(user.uid).off("child_added");
+      
       console.log(user);
+      
       setUser(user);
+      // ref.child(user.uid).push({what: "what"});
+
+      ref.child(user.uid).on("child_added", (snapshot) => {
+          console.log(snapshot.val());
+      });
+      
       if (initializing) setInitializing(false);
       setLoading(false);
     });
