@@ -39,7 +39,9 @@ export default function Signin() {
 
 
   return <View>
-    <Text>Log In</Text>
+    <View style={styles.container} >
+      <Text style={styles.titleText}>Log In</Text>
+    </View>
     {!!value.error && <View><Text>{value.error}</Text></View>}
 
     <TextInput

@@ -33,25 +33,31 @@ export default function HomeScreen() {
   }, []); //ComponentDidMount
 
   const listItem = (item) => 
-    <View>
-      <View>
-        <Text style={styles2.item}>{item.key}</Text>
+    <View style={styles.hcontainer}>
+      <Image 
+        style={styles.lockImg}
+        source={{uri: 'https://cdn-icons-png.flaticon.com/512/61/61457.png'}}
+      />
+      <View style={styles.container}>
+        <Text style={styles.colorText}>Lock 1</Text>
+        {/* <Text style={styles2.item}>{item.key}</Text> */}
         <Text>{item.key}</Text>
-      </View>
-      <Button title="Request Access" />
-      <View
+        <Button title="Request Access" />
+        <View
         style={{
           borderBottomColor: 'grey',
           borderBottomWidth: 1,
           marginLeft: 5,
           marginRight: 5,
           marginTop: 10,
+          width: 343,
         }}
       />
+      </View>
     </View>
   return (
     <View style={styles.container}>
-      <Text>Welcome {userName}</Text>
+      <Text style={styles.titleText}>Welcome {userName}</Text>
       <Text>Nearby Devices</Text>
       <FlatList
         style={styles2.list}

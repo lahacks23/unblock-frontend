@@ -49,7 +49,10 @@ export default function Signup() {
   }
 
   return <View>
-    <Text>Sign Up</Text>
+    <View style={styles.container} >
+      <Text style={styles.titleText}>Sign Up</Text>
+    </View>
+
     {!!value.error && <View><Text>{value.error}</Text></View>}
 
     <TextInput

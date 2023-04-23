@@ -115,5 +115,26 @@ export default StyleSheet.create({
     backgroundColor: "#F6F6F6",
     fontWeight: 500,
   },
+  titleText: {
+    fontWeight: "bold",
+    color: "#151C47",
+    fontSize: 30,
+  },
+  colorText: {
+    color: "#151C47",
+    fontWeight: "bold",
+  },
+  lockImg: {
+    height: 50,
+    width: 50
+  },
+  hcontainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 343,
+    // padding: 10,
+  }
   
 });
